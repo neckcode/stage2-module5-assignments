@@ -34,11 +34,10 @@ public class LocalProcessor {
 
     public LocalProcessor() {
         this.stringArrayList = new LinkedList<>();
-        ;
     }
 
     @ListIteratorAnnotation
-    public void listIterator(LinkedList<String> stringList) {
+    public void listIterator(List<String> stringList) {
         stringArrayList = new LinkedList<>(stringList);
         for (int i = 0; i < period; i++) {
             System.out.println(stringArrayList.get(i).hashCode());
@@ -46,7 +45,7 @@ public class LocalProcessor {
     }
 
     @FullNameProcessorGeneratorAnnotation
-    public String fullnameProcessorGenerator(LinkedList<String> stringList) {
+    public String fullnameProcessorGenerator(List<String> stringList) {
         var processorName = new StringBuilder();
         for (int i = 0; i < stringArrayList.size(); i++) {
             processorName.append(stringList.get(i)).append(" ");
@@ -60,6 +59,10 @@ public class LocalProcessor {
         informationScanner = new Scanner(file);
         var processorVersion = new StringBuilder();
         while (informationScanner.hasNext()) {
+            var nextLine = informationScanner.nextLine();
+            if (nextLine == null) {
+                throw new IllegalArgumentException("Wrong type");
+            }
             processorVersion.append(informationScanner.nextLine());
         }
         this.processorVersion = processorVersion.toString();
