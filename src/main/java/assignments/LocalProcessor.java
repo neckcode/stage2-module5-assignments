@@ -42,15 +42,23 @@ public class LocalProcessor {
             throw new IllegalArgumentException("Wrong period");
         }
         for (int i = 0; i < period; i++) {
-            System.out.println(stringArrayList.get(i).hashCode());
+            var nextLine = stringArrayList.get(i);
+            if (nextLine == null) {
+                throw new IllegalArgumentException("Wrong");
+            }
+            System.out.println(nextLine.hashCode());
         }
     }
 
     @FullNameProcessorGeneratorAnnotation
     public String fullnameProcessorGenerator(List<String> stringList) {
         StringBuilder processorName = new StringBuilder();
-        for (int i = 0; i < stringArrayList.size(); i++) {
-            processorName.append(stringList.get(i)).append(" ");
+        for (int i = 0; i < stringList.size(); i++) {
+            var nextLine = stringList.get(i);
+            if (nextLine == null) {
+                throw new IllegalArgumentException("Wrong");
+            }
+            processorName.append(nextLine).append(" ");
         }
         this.processorName = processorName.toString();
         return this.processorName;
