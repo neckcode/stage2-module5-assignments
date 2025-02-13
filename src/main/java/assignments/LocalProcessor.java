@@ -20,7 +20,7 @@ public class LocalProcessor {
     protected String processorVersion;
     private Integer valueOfCheap;
     private Scanner informationScanner;
-    private List<String> stringArrayList;
+    private List<String> stringArrayList = new ArrayList<>();
 
     public LocalProcessor(String processorName, Long period, String processorVersion, Integer valueOfCheap,
                           Scanner informationScanner, List<String> stringArrayList) {
@@ -33,7 +33,6 @@ public class LocalProcessor {
     }
 
     public LocalProcessor() {
-        this.stringArrayList = new ArrayList<>();
     }
 
     @ListIteratorAnnotation
