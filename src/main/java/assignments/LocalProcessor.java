@@ -3,7 +3,6 @@ package assignments;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -40,7 +39,7 @@ public class LocalProcessor {
     @ListIteratorAnnotation
     public void listIterator(List<String> stringList) {
         stringArrayList = new ArrayList<>(stringList);
-        if (stringArrayList.size() <= period) {
+        if (stringArrayList.size() > period) {
             throw new IllegalArgumentException("Wrong period");
         }
         for (int i = 0; i < period; i++) {
