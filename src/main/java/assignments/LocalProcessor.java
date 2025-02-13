@@ -3,6 +3,7 @@ package assignments;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -37,7 +38,7 @@ public class LocalProcessor {
 
     @ListIteratorAnnotation
     public void listIterator(List<String> stringList) {
-        stringArrayList = new ArrayList<>(stringList);
+        stringArrayList = stringList;
         if (stringArrayList.size() > period) {
             throw new IllegalArgumentException("Wrong period");
         }
@@ -53,10 +54,9 @@ public class LocalProcessor {
     @FullNameProcessorGeneratorAnnotation
     public String fullnameProcessorGenerator(List<String> stringList) {
         StringBuilder processorName = new StringBuilder();
-        for (int i = 0; i < stringList.size(); i++) {
-            var nextLine = stringList.get(i);
+        for (String nextLine : stringList) {
             if (nextLine == null) {
-                throw new IllegalArgumentException("Wrong");
+                continue;
             }
             processorName.append(nextLine).append(" ");
         }
@@ -68,12 +68,16 @@ public class LocalProcessor {
     public void readFullProcessorName(File file) throws FileNotFoundException {
         informationScanner = new Scanner(file);
         StringBuilder processorVersion = new StringBuilder();
-        while (informationScanner.hasNext()) {
-            var nextLine = informationScanner.nextLine();
-            if (nextLine == null) {
-                throw new IllegalArgumentException("Wrong type");
+        try {
+            while (informationScanner.hasNext()) {
+                var nextLine = informationScanner.nextLine();
+                if (nextLine == null) {
+                    continue;
+                }
+                processorVersion.append(informationScanner.nextLine());
             }
-            processorVersion.append(informationScanner.nextLine());
+        } catch (InputMismatchException e) {
+            System.out.println("wrong data");
         }
         this.processorVersion = processorVersion.toString();
     }
