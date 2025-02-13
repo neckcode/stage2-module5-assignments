@@ -45,7 +45,7 @@ public class LocalProcessor {
         for (int i = 0; i < period; i++) {
             var nextLine = stringArrayList.get(i);
             if (nextLine == null) {
-                throw new IllegalArgumentException("Wrong");
+                throw new IllegalStateException();
             }
             System.out.println(nextLine.hashCode());
         }
@@ -56,7 +56,7 @@ public class LocalProcessor {
         StringBuilder processorName = new StringBuilder();
         for (String nextLine : stringList) {
             if (nextLine == null) {
-                continue;
+                throw new IllegalStateException();
             }
             processorName.append(nextLine).append(" ");
         }
