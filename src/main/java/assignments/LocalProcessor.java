@@ -50,7 +50,8 @@ public class LocalProcessor {
         for (int i = 0; i < stringArrayList.size(); i++) {
             processorName.append(stringList.get(i)).append(" ");
         }
-        return processorName.toString();
+        this.processorName = processorName.toString();
+        return this.processorName;
     }
 
     @ReadFullProcessorNameAnnotation
