@@ -40,7 +40,7 @@ public class LocalProcessor {
     @ListIteratorAnnotation
     public void listIterator(List<String> stringList) {
         stringArrayList = new ArrayList<>(stringList);
-        if (stringArrayList.size() < period) {
+        if (stringArrayList.size() <= period) {
             throw new IllegalArgumentException("Wrong period");
         }
         for (int i = 0; i < period; i++) {
@@ -50,7 +50,7 @@ public class LocalProcessor {
 
     @FullNameProcessorGeneratorAnnotation
     public String fullnameProcessorGenerator(List<String> stringList) {
-        var processorName = new StringBuilder();
+        StringBuilder processorName = new StringBuilder();
         for (int i = 0; i < stringArrayList.size(); i++) {
             processorName.append(stringList.get(i)).append(" ");
         }
@@ -61,7 +61,7 @@ public class LocalProcessor {
     @ReadFullProcessorNameAnnotation
     public void readFullProcessorName(File file) throws FileNotFoundException {
         informationScanner = new Scanner(file);
-        var processorVersion = new StringBuilder();
+        StringBuilder processorVersion = new StringBuilder();
         while (informationScanner.hasNext()) {
             var nextLine = informationScanner.nextLine();
             if (nextLine == null) {
